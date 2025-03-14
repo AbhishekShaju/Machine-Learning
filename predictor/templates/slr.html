@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SLR Salary Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #007bff; }
+        .container { margin-top: 50px; background: white; padding: 20px; border-radius: 10px; display: inline-block; }
+        input, button { padding: 10px; margin: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ddd; }
+        button { background-color: #28a745; color: white; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .switch { background-color: #007bff; }
+        .switch:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Salary Prediction</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Years of Experience:</label>
+            <input type="number" name="experience" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if salary %}
+            <h3>Predicted Salary: ₹{{ salary }}</h3>
+        {% endif %}
+        <br>
+        <a href="/mlr/"><button class="switch">MLR Prediction</button></a>
+    </div>
+</body>
+</html>

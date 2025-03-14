@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MLR Salary Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color:#007bff; }
+        .container { margin-top: 50px; background: white; padding: 20px; border-radius: 10px; display: inline-block; }
+        input, select, button { padding: 10px; margin: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ddd; }
+        button { background-color: #28a745; color: white; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .switch { background-color: #007bff; }
+        .switch:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Predict Salary using Multiple Factors (MLR)</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Years of Experience:</label>
+            <input type="number" name="experience" required><br>
+
+            <label>Education Level:</label>
+            <select name="education">
+                <option value="Bachelor's">Bachelor's</option>
+                <option value="Master's">Master's</option>
+                <option value="PhD">PhD</option>
+            </select><br>
+
+            <label>Job Role:</label>
+            <select name="jobrole">
+                <option value="Junior Dev">Junior Dev</option>
+                <option value="Software Eng">Software Eng</option>
+                <option value="Senior Eng">Senior Eng</option>
+            </select><br>
+
+            <label>Location:</label>
+            <select name="location">
+                <option value="New York">New York</option>
+                <option value="Chicago">Chicago</option>
+                <option value="San Francisco">San Francisco</option>
+            </select><br>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if salary %}
+            <h3>Predicted Salary: ₹{{ salary }}</h3>
+        {% endif %}
+        <br>
+        <a href="/"><button class="switch">Back to SLR Prediction</button></a>
+    </div>
+</body>
+</html>
