@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: salary-prediction
+    env: python
+    buildCommand: 
+      - pip install -r requirements.txt
+      - python manage.py migrate
+    startCommand: gunicorn salary_prediction.wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: "sqlite:///db.sqlite3"  # Use PostgreSQL for production
